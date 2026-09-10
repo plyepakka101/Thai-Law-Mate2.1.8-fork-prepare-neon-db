@@ -1,0 +1,21 @@
+// Prisma schema for laws
+// Adjust models to match your data shape if needed
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Law {
+  id        Int      @id @default(autoincrement())
+  code      String   @unique
+  title     String
+  content   String   @db.Text
+  source    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
